@@ -1,17 +1,22 @@
-const startButton = document.getElementById('start-btn')
-const questionContainerElement = document.getElementById('question-container')
-const landingPage = document.getElementById('landing')
-const questionElement = document.getElementById('question')
-const answerButtonsElement = document.getElementById('answer-buttons')
+const startButton = document.getElementById('start-btn');
+const questionContainerElement = document.getElementById('question-container');
+const landingPage = document.getElementById('landing');
+const questionElement = document.getElementById('question');
+const answerButtonsElement = document.getElementById('answer-buttons');
 const saveScoreEl = document.getElementById('save-score')
-const viewScores = document.getElementById('scores')
-const highScores = document.getElementById('high-scores')
+const viewScores = document.getElementById('scores');
+const highScores = document.getElementById('high-scores');
+const timerEl = document.getElementById('time')
+  var timeLeft = 10;
+  var secondsElapsed = 0;
+  var currentQ = 0;
+  
 
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
-// viewScores.addEventListener('click', showScores)
-
+startButton.addEventListener('click', startTimer)
+viewScores.addEventListener('click', showScores)
 
 
 
@@ -113,6 +118,7 @@ function selectAnswer(e){
        currentQuestionIndex++
        setNextQuestion()
     } else{
+        stopTimer();
         questionContainerElement.classList.add('hide')
         saveScoreEl.classList.remove('hide')
     }
@@ -123,4 +129,18 @@ function showScores(){
     landingPage.classList.add('hide')
     highScores.classList.remove('hide')
   }
+
+  //stops timer
+function stopTimer() {
+    clearInterval(interval);
+}
+  
+  //starts and updates timer
+function startTimer() {
+      timerEl.textContent = timeLeft;
+      interval = setInterval(function () {
+          secondsElapsed++;
+          timerEl.textContent = timeLeft - secondsElapsed;
+        }, 1000);
+}
  
