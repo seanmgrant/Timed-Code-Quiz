@@ -7,7 +7,7 @@ const saveScoreEl = document.getElementById('save-score')
 const viewScores = document.getElementById('scores');
 const highScores = document.getElementById('high-scores');
 const timerEl = document.getElementById('time');
-  var timeLeft = 10;
+  var timeLeft = 75;
   var secondsElapsed = 0;
   var currentQ = 0;
   
